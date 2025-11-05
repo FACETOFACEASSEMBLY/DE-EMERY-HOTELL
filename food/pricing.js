@@ -1,0 +1,67 @@
+import { cart } from "./cart.js";
+
+
+export function updateTotalPrice() {
+    let total = 0.00;
+    let orderSummaryHTML = '';
+
+
+    if (cart.length > 0) {
+        total = cart.reduce((sum, food) => sum + Number(food.price), 0);
+    }
+   orderSummaryHTML = `
+        <div class="summary-line">
+        <span>Total:</span>
+        <span class="summary-total">₦${total}</span> 
+    </div>
+    <button class="checkout-btn">Proceed to Checkout</button>
+   `;
+   
+   document.getElementById('js-order-summary').innerHTML = orderSummaryHTML;
+   const amount = Number(total);
+
+    function payWithPaystack() {
+    
+    console.log(amount);
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const room = document.getElementById('room').value;
+    const number = document.getElementById('phone').value;
+    
+    
+    console.log(email, name, room, number);
+    if (!email || !name || !room || !number) {
+        alert('Please put your email, your name, room number and phone number');
+        return;
+    }
+    
+    new PaystackPop().newTransaction({
+        key: 'pk_live_f815dbee167ebaa4ebfcec8159fc879f62f62be7',
+        email,
+        name,
+        room,
+        number,
+        amount: amount * 100,
+        onSuccess: (transaction) => {
+            console.log('Success', transaction);
+            alert('Payment Successfull');
+        },
+        onCancel: () => console.log('transaction has been cancelled'),
+        onError: (error) => console.log('Error', error),
+    });
+}
+
+
+
+//THIS IS THE BUTTON FUNCTION
+
+
+   const button = document.getElementById('pay-now-btn');
+    button.addEventListener('click', () => {
+        payWithPaystack();
+    });
+}
+updateTotalPrice();
+
+
+

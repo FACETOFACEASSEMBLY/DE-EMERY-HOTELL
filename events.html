@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events – De Emery Hotel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<header class="event-hero fade-section">
+    <div class="event-slider">
+        <div class="event-slide active" style="background-image: url('/images/swimming pool.jpg');"></div>
+        <div class="event-slide" style="background-image: url('/images/dining.jpg');"></div>
+    </div>
+
+    <div class="event-hero-overlay">
+        <h1>Upcoming Events</h1>
+        <p>Experience unforgettable moments at De Emery Hotel</p>
+    </div>
+</header>
+
+
+
+<section class="featured-event fade-section">
+    <div class="featured-container">
+        <div class="featured-image">
+            <img src="/images/gehgeh image.jpeg" alt="GehGeh Event">
+        </div>
+
+        <div class="featured-info">
+            <h2>GehGeh Live at De Emery Hotel</h2>
+            <p>
+                Get ready for an unforgettable night! GehGeh will be performing live at 
+                De Emery Hotel — a night filled with high energy, premium vibe, music, 
+                and an atmosphere like no other.
+            </p>
+
+            <div class="event-meta">
+                <span class="meta-item"><strong>Date:</strong> December 20, 2025</span>
+                <span class="meta-item"><strong>Time:</strong> 7:00 PM</span>
+                <span class="meta-item"><strong>Venue:</strong> De Emery Grand Hall</span>
+            </div>
+
+            <button class="explore-btn">Reserve a Seat</button>
+        </div>
+    </div>
+</section>
+<section class="cta fade-section">
+    <h2>Plan an Event With Us</h2>
+    <button onclick="window.location.href='contact.html'">Contact Us</button>
+</section>
+
+<section class="other-events fade-section">
+    <h2 class="section-title">More Upcoming Events</h2>
+
+    <div class="event-grid">
+
+        
+        <div class="event-card">
+            <div class="event-card-img">
+                <img src="/images/event1.jpg" alt="Event Image">
+            </div>
+            <div class="event-card-body">
+                <h3>Business Networking Night</h3>
+                <p>Connect with business leaders, entrepreneurs, and investors.</p>
+                <span class="event-date">Dec 10, 2025</span>
+                <button class="card-btn">View Details</button>
+            </div>
+        </div>
+
+       
+        <div class="event-card">
+            <div class="event-card-img">
+                <img src="/images/event2.jpg" alt="Event Image">
+            </div>
+            <div class="event-card-body">
+                <h3>Christmas Gala Dinner</h3>
+                <p>A night of celebration, fine dining, and unforgettable memories.</p>
+                <span class="event-date">Dec 25, 2025</span>
+                <button class="card-btn">View Details</button>
+            </div>
+        </div>
+
+        
+        <div class="event-card">
+            <div class="event-card-img">
+                <img src="/images/event3.jpg" alt="Event Image">
+            </div>
+            <div class="event-card-body">
+                <h3>New Year Party</h3>
+                <p>Step into the new year with style, music, and excitement.</p>
+                <span class="event-date">Jan 1, 2026</span>
+                <button class="card-btn">View Details</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<section class="cta fade-section">
+        <h2>Back to Home Page</h2>
+        <button onclick="window.location.href='index.html'">Return</button>
+    </section>
+<footer class="site-footer">
+    <p>© 2025 De Emery Hotel & Lounge. All rights reserved.</p>
+</footer>
+
+<script>
+// SCROLL FADE EFFECT
+const fadeElements = document.querySelectorAll(".fade-section");
+
+function handleFadeScroll() {
+    fadeElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 120) {
+            el.classList.add("visible");
+        }
+    });
+}
+let currentSlide = 0;
+const slides = document.querySelectorAll(".event-slide");
+
+function switchSlide() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add("active");
+}
+
+setInterval(switchSlide, 5000);
+
+window.addEventListener("scroll", handleFadeScroll);
+window.addEventListener("load", handleFadeScroll);
+</script>
+
+</body>
+</html>
