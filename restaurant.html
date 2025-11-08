@@ -86,9 +86,124 @@
 
     </div>
 </section>
+<section class="meal-section">
+    <h2>Seafood & Starters</h2>
+    <div id="seafood-js" class="meal-grid">
+
+        <!-- <div class="meal-card">
+            <img src="/images/food images/prawn balls 10500.jpg" alt="Meal" />
+            <h3>Grilled Tiger Shrimps</h3>
+            <p>Perfectly seasoned shrimps grilled to golden perfection.</p>
+            <span class="price">₦9000</span>
+            <button class="add-cart-btn" data-id="7">Add to Cart</button>
+        </div>
+
+        <div class="meal-card">
+            <img src="/images/food images/calamari.jpg" alt="Meal" />
+            <h3>Crispy Calamari</h3>
+            <p>Lightly battered calamari served with tangy dip.</p>
+            <span class="price">₦8500</span>
+            <button class="add-cart-btn" data-id="8">Add to Cart</button>
+        </div> -->
+
+    </div>
+</section>
+
+<section class="meal-section">
+    <h2>Proteins</h2>
+    <div id="proteins-js" class="meal-grid">
+
+        <!-- <div class="meal-card">
+            <img src="/images/food images/Alfred shrimps pasta.jpg" alt="Meal" />
+            <h3>Grilled Chicken</h3>
+            <p>Juicy and tender chicken grilled with rich spices.</p>
+            <span class="price">₦7000</span>
+            <button class="add-cart-btn" data-id="11">Add to Cart</button>
+        </div>
+
+        <div class="meal-card">
+            <img src="/images/food images/peppered-meat.jpg" alt="Meal" />
+            <h3>Peppered Beef</h3>
+            <p>Hot, spicy beef cooked with fresh peppers.</p>
+            <span class="price">₦6500</span>
+            <button class="add-cart-btn" data-id="12">Add to Cart</button>
+        </div> -->
+
+    </div>
+</section>
+<section class="meal-section">
+    <h2>Pasta</h2>
+    <div id="pasta-js" class="meal-grid">
+
+        <!-- <div class="meal-card">
+            <img src="/images/food images/pasta-spaghetti-with-shrimps-sauce.jpg" alt="Meal" />
+            <h3>Chicken Alfredo</h3>
+            <p>Creamy Alfredo pasta topped with grilled chicken.</p>
+            <span class="price">₦8000</span>
+            <button class="add-cart-btn" data-id="13">Add to Cart</button>
+        </div>
+
+        <div class="meal-card">
+            <img src="/images/food images/bolognese.jpg" alt="Meal" />
+            <h3>Spaghetti Bolognese</h3>
+            <p>Italian-style pasta with rich beef sauce.</p>
+            <span class="price">₦7500</span>
+            <button class="add-cart-btn" data-id="14">Add to Cart</button>
+        </div> -->
+
+    </div>
+</section>
+<section class="meal-section">
+    <h2>Special Noodles</h2>
+    <div id="noodles-js" class="meal-grid">
+
+        <!-- <div class="meal-card">
+            <img src="/images/food images/shrimp indomie.png" alt="Meal" />
+            <h3>Stir Fry Noodles</h3>
+            <p>Premium noodles stir-fried with chicken & vegetables.</p>
+            <span class="price">₦6000</span>
+            <button class="add-cart-btn" data-id="15">Add to Cart</button>
+        </div>
+
+        <div class="meal-card">
+            <img src="/images/food images/egg-noodles.jpg" alt="Meal" />
+            <h3>Egg Supreme Noodles</h3>
+            <p>Well-seasoned noodles served with double eggs.</p>
+            <span class="price">₦5000</span>
+            <button class="add-cart-btn" data-id="16">Add to Cart</button>
+        </div> -->
+
+    </div>
+</section>
+<section class="meal-section">
+    <h2>Side Starters</h2>
+    <div id="sides-js" class="meal-grid">
+
+        <!-- <div class="meal-card">
+            <img src="/images/food images/" alt="Meal" />
+            <h3>French Fries</h3>
+            <p>Golden, crispy fries served with ketchup.</p>
+            <span class="price">₦2500</span>
+            <button class="add-cart-btn" data-id="17">Add to Cart</button>
+        </div>
+
+        <div class="meal-card">
+            <img src="/images/food images/chin-chin.jpg" alt="Meal" />
+            <h3>Crunchy Chin-Chin</h3>
+            <p>Perfectly sweet & crunchy Nigerian chin-chin.</p>
+            <span class="price">₦2000</span>
+            <button class="add-cart-btn" data-id="18">Add to Cart</button>
+        </div> -->
+
+    </div>
+</section>
 
 
-<section class="cart-section">
+
+
+
+
+<section class="cart-section" id="cart-section">
     <h2>Your Cart</h2>
 
     <div id="cart-js" class="cart-items">
@@ -221,5 +336,42 @@ window.addEventListener("load", handleFadeOnScroll);
 <script src="food/cart.js" type="module"></script>
 <script src="food/checkout.js" type="module"></script>
 <script src="food/pricing.js" type="module"></script>
+
+
+<button id="floating-btn" class="floating-cart-btn">Go to Cart ↓</button>
+<script>
+const btn = document.getElementById("floating-btn");
+let atCart = false;
+
+// ✅ PLAY animation on page load
+window.addEventListener("load", () => {
+    btn.classList.add("animate-in");
+});
+
+btn.addEventListener("click", () => {
+    if (!atCart) {
+        document.querySelector(".cart-section").scrollIntoView({ behavior: "smooth" });
+    } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+});
+
+window.addEventListener("scroll", () => {
+    const cart = document.querySelector(".cart-section");
+    const rect = cart.getBoundingClientRect();
+
+    if (rect.top <= 150 && rect.bottom >= 150) {
+        atCart = true;
+        btn.textContent = "Back to Top ↑";
+        btn.classList.add("top-mode");
+    } else {
+        atCart = false;
+        btn.textContent = "Go to Cart ↓";
+        btn.classList.remove("top-mode");
+    }
+});
+</script>
+
+
 </body>
 </html>

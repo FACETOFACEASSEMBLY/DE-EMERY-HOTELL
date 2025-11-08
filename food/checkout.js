@@ -1,7 +1,13 @@
 import { cart, addToCart, removeFromCart } from "./cart.js";
 import { updateTotalPrice } from "./pricing.js";
 
+const addSound = new Audio('add to cart sound.mp3');
 
+function playAddToCartSound() {
+    addSound.currentTime - 0; //this will restart the soudn if spam clicked
+    addSound.play();
+
+}
 
     function generateCheckout() {
     let cartHTML = '';
@@ -25,35 +31,22 @@ import { updateTotalPrice } from "./pricing.js";
         </div>
         
     `;
+    console.log(id);
     
-    document.getElementById('cart-js').innerHTML = cartHTML;
 });
+document.getElementById('cart-js').innerHTML = cartHTML;
 deleteFood();
 addFood();
 }
 generateCheckout();
 
-//THIS IS USED TO ADD PRODUCTS FROM THE PAGE
-document.querySelectorAll('.add-button-js').forEach((button) => {
-    button.addEventListener('click', () => {
-        const productId = button.dataset.productId;
-        const productName = button.dataset.productName;
-        const productPrice = button.dataset.productPrice;
-        const productImage = button.dataset.productImage;
-        console.log(productId, productName, productPrice, productImage);
-        console.log(cart);
-        addToCart(productId, productName, productPrice, productImage);
-        generateCheckout();
-        updateTotalPrice();
-        
-    });
-    
-});
+
 
 //THIS IS USED TO ADD PRODUCTS FROM THE PAGE
 function addFood() {
     document.querySelectorAll('.js-add-button').forEach((button) => {
     button.addEventListener('click', () => {
+        playAddToCartSound();
         const productId = button.dataset.productId;
         const productName = button.dataset.productName;
         const productPrice = button.dataset.productPrice;
