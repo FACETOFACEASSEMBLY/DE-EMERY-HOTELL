@@ -1,5 +1,11 @@
-import { cart } from "./cart.js";
+import { cart, clearCart } from "./cart.js";
 
+const addPurchaseSound = new Audio('purchase sound.mp3');
+
+function purchaseSound() {
+    addPurchaseSound.currentTime - 0;
+    addPurchaseSound.play();
+}
 
 export function updateTotalPrice() {
     let total = 0.00;
@@ -44,7 +50,9 @@ export function updateTotalPrice() {
         amount: amount * 100,
         onSuccess: (transaction) => {
             console.log('Success', transaction);
-            alert('Payment Successfull');
+            purchaseSound();
+            clearCart();
+            alert('Payment Successfull, Check your Email for the Receipt');
         },
         onCancel: () => console.log('transaction has been cancelled'),
         onError: (error) => console.log('Error', error),

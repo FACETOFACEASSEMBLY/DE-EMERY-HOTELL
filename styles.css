@@ -1913,6 +1913,153 @@ h2 {
 .floating-cart-btn.animate-in {
     animation: slideInRight 1.4s ease-out forwards;  /* slowed down */
 }
+/* Live Stream Section */
+.live-stream-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #f7f7f7;
+    margin-top: 50px;
+    filter: invert(100%);
+}
+
+.live-stream-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #222;
+}
+
+.live-stream-section .live-subtitle {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* Frame */
+.live-frame {
+    max-width: 900px;
+    margin: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: translateY(30px);
+    opacity: 1;
+    transition: all 1s ease;
+}
+
+.live-frame iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    display: block;
+    border-radius: 20px;
+}
+
+/* Fade-in animation on scroll */
+.fade-section.show .live-frame {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 600px) {
+    .live-frame iframe {
+        height: 250px;
+    }
+
+    .live-stream-section h2 {
+        font-size: 2rem;
+    }
+}
+.video-feature-section {
+    padding: 80px 5%;
+    background: #130d1b;
+}
+
+.video-feature-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    
+    flex-direction: row;
+}
+
+.video-slider {
+    width: 55%;
+    height: 400px;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    opacity: 1;
+}
+
+.hotel-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.hotel-video.active {
+    opacity: 1;
+}
+
+.video-info {
+    width: 40%;
+    padding: 20px;
+}
+
+.video-info h2 {
+    font-size: 2.3rem;
+    margin-bottom: 15px;
+}
+
+.video-info p {
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.video-info ul {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.video-info ul li {
+    padding: 5px 0;
+    font-size: 1rem;
+}
+
+.video-btn {
+    display: inline-block;
+    background: #000;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.video-btn:hover {
+    transform: translateY(-3px);
+    background: #444;
+}
 
 
-
+/* ✅ Responsive */
+@media (max-width: 900px) {
+    .video-feature-container {
+        flex-direction: column;
+    }
+    .video-slider,
+    .video-info {
+        width: 100%;
+    }
+}

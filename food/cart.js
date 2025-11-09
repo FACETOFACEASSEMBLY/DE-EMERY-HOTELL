@@ -43,3 +43,7 @@ function saveToStorage() {
 }
 
 console.log(cart);
+
+export function clearCart() {
+    localStorage.clear();
+}

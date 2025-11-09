@@ -111,5 +111,5 @@ export const sideStarters = [{
     name: 'Mashed Potatoes',
     details: `if it's your first time, then you've been missing your entire life, order now!`,
     images: '/images/food images/mashed potatoes.png',
-    price: 3000
+    price: 100
 }];
