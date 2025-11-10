@@ -1,15 +1,15 @@
 export let cart = JSON.parse(localStorage.getItem('cart')) || [{
     id: '28432321392hksh7wew9dbify78e7nhd7b8',
     name: 'Jollof Rice & Chicken',
-    images: '/images/food images/jollor rice and chicken.png',
+    images: './images/food images/jollor rice and chicken.png',
     price: 3500
 }, {
     id: '234939fkgysigfyie457390nfify78e7nhd7b8',
     name: 'Fried Rice & Deluxe',
-    images: '/images/food images/fried rice and chicken.png',
+    images: './images/food images/fried rice and chicken.png',
     price: 4000
 }];
-
+ 
 export function addToCart(productId, productName, productPrice, productImage) {
     let matchingItem;
 
