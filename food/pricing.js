@@ -14,6 +14,7 @@ export function updateTotalPrice() {
 
     if (cart.length > 0) {
         total = cart.reduce((sum, food) => sum + Number(food.price), 0);
+        
     }
    orderSummaryHTML = `
         <div class="summary-line">
@@ -31,23 +32,30 @@ export function updateTotalPrice() {
     console.log(amount);
     const email = document.getElementById('email').value;
     const name = document.getElementById('name').value;
-    const room = document.getElementById('room').value;
+    const address = document.getElementById('room').value;
     const number = document.getElementById('phone').value;
     
     
-    console.log(email, name, room, number);
-    if (!email || !name || !room || !number) {
-        alert('Please put your email, your name, room number and phone number');
+    console.log(email, name, address, number);
+    if (!email || !name || !address || !number) {
+        alert('Please put your email, your name, address number and phone number');
         return;
     }
     
     new PaystackPop().newTransaction({
         key: 'pk_live_f815dbee167ebaa4ebfcec8159fc879f62f62be7',
         email,
-        name,
-        room,
-        number,
         amount: amount * 100,
+
+        //Force only cards
+        channels: ['card'],
+
+        metadata: {
+                    name: name,
+                    address: address,
+                    number: number,
+                    cart: cart
+            },
         onSuccess: (transaction) => {
             console.log('Success', transaction);
             purchaseSound();
