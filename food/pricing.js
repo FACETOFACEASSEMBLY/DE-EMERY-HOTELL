@@ -51,10 +51,23 @@ export function updateTotalPrice() {
         channels: ['card'],
 
         metadata: {
-                    name: name,
-                    address: address,
-                    number: number,
-                    cart: cart
+                    custom_fields: [{
+                        display_name: 'Full Name',
+                        variable_name: 'full_name',
+                        value: name
+                    }, {
+                        display_name: 'Address',
+                        variable_name: 'address',
+                        value: address
+                    }, {
+                        display_name: 'Phone Number',
+                        variable_name: 'phone_number',
+                        value: number
+                    }, {
+                        display_name: 'Cart Items',
+                        variable_name: 'cart',
+                        value: JSON.stringify(cart)
+                    }],
             },
         onSuccess: (transaction) => {
             console.log('Success', transaction);
