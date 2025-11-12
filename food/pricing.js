@@ -27,8 +27,10 @@ export function updateTotalPrice() {
    document.getElementById('js-order-summary').innerHTML = orderSummaryHTML;
    const amount = Number(total);
 
-    function payWithPaystack() {
+   function payWithPaystack() {
     
+        const { jsPDF } = window.jspdf;
+
     console.log(amount);
     const email = document.getElementById('email').value;
     const name = document.getElementById('name').value;
@@ -66,7 +68,7 @@ export function updateTotalPrice() {
                     }, {
                         display_name: 'Cart Items',
                         variable_name: 'cart',
-                        value: JSON.stringify(cart)
+                        value: JSON.stringify(cart.map(i => i.name).join(', '))
                     }],
             },
         onSuccess: (transaction) => {
@@ -74,6 +76,32 @@ export function updateTotalPrice() {
             purchaseSound();
             clearCart();
             alert('Payment Successfull, Check your Email for the Receipt');
+            const doc = new jsPDF();
+
+            doc.setFontSize(22);
+            doc.text("Payment Receipt", 20, 20);
+
+            doc.setFontSize(12);
+            doc.text("Thank you for your purchase!", 20, 30);
+
+            doc.text(`Reference: ${transaction.reference}`, 20, 50);
+            doc.text(`Name: ${name}`, 20, 60);
+            doc.text(`Email: ${email}`, 20, 70);
+            doc.text(`Address: ${address}`, 20, 80);
+            doc.text(`Phone Number: ${number}`, 20, 90);
+
+            doc.text(`Amount Paid: ₦${amount}`, 20, 110);
+
+            doc.text("Items Purchased:", 20, 130);
+            cart.forEach((item, index) => {
+                doc.text(`- ${item.name} (₦${item.price})`, 25, 140 + index * 10);
+            });
+
+            doc.setFontSize(10);
+            doc.text("Generated Automatically - Not an Official Tax Invoice.", 20, 280);
+
+            // ✅ SAVE PDF
+            doc.save(`receipt_${transaction.reference}.pdf`);
         },
         onCancel: () => console.log('transaction has been cancelled'),
         onError: (error) => console.log('Error', error),
